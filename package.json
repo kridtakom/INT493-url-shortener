@@ -1,0 +1,23 @@
+{
+  "name": "INT493-url-shortener",
+  "version": "1.0.0",
+  "description": "INT493-url-shortener",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kridtakom/INT493-url-shortener.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kridtakom/INT493-url-shortener/issues"
+  },
+  "homepage": "https://github.com/kridtakom/INT493-url-shortener#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
