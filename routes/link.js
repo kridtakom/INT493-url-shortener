@@ -3,7 +3,7 @@ const router = express.Router();
 const shortHash = require('short-hash');
 const client = require("../config/redis");
 
-const base_url = 'http://sh.a3.tnpl.me/l/'
+const base_url = process.env.BASE_URL
 
 const remoceSpace = (text) => {
     return text.replace(/\s/g, '')
