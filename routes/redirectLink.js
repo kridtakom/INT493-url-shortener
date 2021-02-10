@@ -16,6 +16,7 @@ router.get('/:url', function (req, res, next) {
                 res.status(302).redirect(reply)
             } else {
                 console.log("==== Not Found redis ====")
+                res.status(400).send("Not Found URL")
             }
         } else {
             console.log("error")
