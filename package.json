@@ -1,31 +1,16 @@
 {
-  "name": "INT493-url-shortener",
-  "version": "1.0.0",
-  "description": "INT493-url-shortener",
-  "main": "index.js",
+  "name": "int493-url-shortener",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx nodemon server.js"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kridtakom/INT493-url-shortener.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kridtakom/INT493-url-shortener/issues"
-  },
-  "homepage": "https://github.com/kridtakom/INT493-url-shortener#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "crypto-random-string": "^3.3.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.11.14",
-    "nanoid": "^3.1.20",
-    "nodemon": "^2.0.7"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "2.0.0-beta11"
   }
 }
