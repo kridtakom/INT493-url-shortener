@@ -12,4 +12,4 @@ FROM base as production
 ENV NODE_ENV=production
 ENV NODE_ENV=production
 RUN npm install
-CMD ["pm2", "start", "npm", "--", "app.js"]
+CMD ["pm2", "start", "npm", "app.js"]
