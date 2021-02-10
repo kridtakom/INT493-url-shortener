@@ -11,4 +11,4 @@ FROM base as production
 
 ENV NODE_ENV=production
 RUN npm install
-CMD ["pm2-runtime", "start", "app.js"]
+CMD ["pm2-runtime", "app.js"]
