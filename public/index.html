@@ -51,6 +51,7 @@
               </div>
             </div>
             <p id="demo" class="pt-4" style="font-weight: bold"></p>
+            <p id="error" style="color: red"></p>
           </div>
         </div>
       </div>
@@ -89,6 +90,7 @@
 <script>
 
   function myFunction() {
+    document.getElementById("error").innerHTML = "";
     var inpObj = document.getElementById("link-form");
     if (!inpObj.checkValidity()) {
       document.getElementById("demo").innerHTML = inpObj.validationMessage;
@@ -98,14 +100,13 @@
       axios.post('/link', { url: inpObj.value })
         .then(function (response) {
           // handle success
-          console.log(response);
           var result = response.data.link.link(response.data.link);
           document.getElementById("demo").innerHTML = result;
         })
         .catch(function (error) {
           // handle error
-          console.log(error);
-          document.getElementById("demo").innerHTML = error;
+          document.getElementById("demo").innerHTML = error.response.data
+          document.getElementById("error").innerHTML = error;
         })
     }
   } 
