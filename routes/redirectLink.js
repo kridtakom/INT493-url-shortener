@@ -21,6 +21,7 @@ router.get('/:url', function (req, res, next) {
         } else {
             console.log("error")
             console.error(err);
+            res.status(500).send(err)
         }
     });
 });
