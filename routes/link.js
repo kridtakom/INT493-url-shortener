@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var shortHash = require('short-hash');
+const express = require('express');
+const router = express.Router();
+const shortHash = require('short-hash');
 
 const base_url = 'http://sh.a3.tnpl.me/l/'
 

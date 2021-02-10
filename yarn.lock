@@ -666,6 +666,11 @@ qs@6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
+radis@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/radis/-/radis-2.0.0.tgz#d1478d276935e80c894959b1572eb1eede0c4e68"
+  integrity sha512-GOOtEO6u2jcuI/mQcatLQ1Ge79nHVMD3hRpdi2noi8Cj66XOzVbk73PWMKZMv5qEghg3Y7oRwx5stot7z+9gJA==
+
 range-parser@~1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"

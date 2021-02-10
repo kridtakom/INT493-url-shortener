@@ -12,6 +12,7 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
+    "radis": "^2.0.0",
     "short-hash": "^1.0.0"
   }
 }
