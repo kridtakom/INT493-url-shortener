@@ -9,10 +9,11 @@ const remoceSpace = (text) => {
     return text.replace(/\s/g, '')
 }
 
+
 router.post('/', function (req, res, next) {
     let { url } = req.body
-    url = remoceSpace(url)
     if (url) {
+        url = remoceSpace(url)
         let hashUrl = shortHash(url)
         client.get(hashUrl, (err, reply) => {
             if (!err) {
@@ -28,14 +29,18 @@ router.post('/', function (req, res, next) {
                             res.status(200).json(message)
                         } else {
                             console.error(err);
+                            res.status(500).send(err)
                         }
                     });
                 }
             } else {
                 console.log("error")
                 console.error(err);
+                res.status(500).send(err)
             }
         });
+    } else {
+        res.status(500).send("Error")
     }
 });
 
