@@ -1,8 +1,8 @@
 redis:
   image: redis
   container_name: redis-url-short
-  expose:
-    - 6379
+  port:
+    - 6379:6379
 
 app:
   build: ./
