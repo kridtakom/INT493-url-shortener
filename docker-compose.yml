@@ -1,6 +1,7 @@
 redis:
   image: redis
   container_name: redis-url-short
+  command: redis-server --requirepass setyourpassword
   ports:
     - 6379:6379
 
