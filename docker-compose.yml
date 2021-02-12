@@ -2,6 +2,8 @@ redis:
   image: redis
   container_name: redis-url-short
   command: redis-server --requirepass setyourpassword
+  volumes:
+      - /tmp/redis:/data
   ports:
     - 6379:6379
 
