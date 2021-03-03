@@ -1,7 +1,7 @@
 redis:
   image: redis:6.2.1-alpine
   container_name: redis-url-short
-  command: redis-server --requirepass setyourpassword
+  command: redis-server --requirepass setyourpassword /usr/local/etc/redis/redis.conf
   volumes:
       - /tmp/redis:/data
       - ./redis.conf:/usr/local/etc/redis/redis.conf
