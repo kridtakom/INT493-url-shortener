@@ -20,7 +20,7 @@ router.post('/', function (req, res, next) {
         url = remoceSpace(url)
         if (verifyUrl(url)) {
             let hashUrl = shortHash(url)
-            client.get(hashUrl, (err, reply) => {
+            client.hgetall(hashUrl, (err, reply) => {
                 if (!err) {
                     if (reply) {
                         console.log("==== Form redis ===")
