@@ -1,7 +1,7 @@
 redis:
   image: redis
   container_name: redis-url-short
-  command: redis-server --requirepass setyourpassword && save 60 1
+  command: bash -c "redis-server --requirepass setyourpassword && save 30 1"
   volumes:
       - /tmp/redis:/data
   ports:
