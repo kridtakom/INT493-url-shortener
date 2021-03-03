@@ -28,7 +28,7 @@ router.post('/', function (req, res, next) {
                         res.status(200).json(message)
                     } else {
                         console.log("==== Save redis ====")
-                        client.hmset(hashUrl, 'link', url, 'visit', 1, (err) => {
+                        client.hmset(hashUrl, 'link', url, 'visit', 0, (err) => {
                             if (!err) {
                                 let message = { link: base_url + hashUrl }
                                 res.status(200).json(message)
