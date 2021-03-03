@@ -9,11 +9,44 @@ const remoceSpace = (text) => {
 router.get('/:url', function (req, res, next) {
     let hashUrl = req.params.url;
     hashUrl = remoceSpace(hashUrl)
-    client.get(hashUrl, (err, reply) => {
+    client.hgetall(hashUrl, (err, reply) => {
+        if (!err) {
+            if (reply.link && reply.visit) {
+                console.log("==== Found Form redis ===")
+                client.hmset(hashUrl, 'link', reply.link, 'visit', parseInt(reply.visit) + 1, (err) => {
+                    if (!err) {
+                        console.log(reply.link)
+                        res.status(302).redirect(reply.link)
+                    } else {
+                        console.error(err);
+                        res.status(500).send(err)
+                    }
+                });
+            } else {
+                console.log("==== Not Found redis ====")
+                res.status(400).send("Not Found URL")
+            }
+        } else {
+            console.log("error")
+            console.error(err);
+            res.status(500).send(err)
+        }
+    });
+});
+
+router.get('/:url/stats', function (req, res, next) {
+    let hashUrl = req.params.url;
+    hashUrl = remoceSpace(hashUrl)
+    client.hgetall(hashUrl, (err, reply) => {
+        console.log("== stats== Found Form redis = stats==")
         if (!err) {
             if (reply) {
-                console.log("==== Found Form redis ===")
-                res.status(302).redirect(reply)
+                try {
+                    res.status(200).json({ "visit": reply.visit })
+                } catch (e) {
+                    res.status(500).send("JSON error from redis")
+                }
+
             } else {
                 console.log("==== Not Found redis ====")
                 res.status(400).send("Not Found URL")
