@@ -3,7 +3,7 @@ redis:
   container_name: redis-url-short
   command: redis-server /usr/local/etc/redis/redis.conf
   volumes:
-      - /tmp/redis:/data
+      - /etc/redis:/data
       - ./redis.conf:/usr/local/etc/redis/redis.conf
   ports:
     - 6379:6379
