@@ -12,11 +12,10 @@ router.get('/:url', (req, res, next) => {
     client.hgetall(hashUrl, (err, reply) => {
         if (!err) {
             if (reply) {
-                client.incr(reply.link, (err, visit) => {
+                client.incr(JSON.stringify(hashUrl), (err, visit) => {
                     if (!err) {
                         client.hset(hashUrl, 'link', reply.link, 'visit', visit, (err) => {
                             if (!err) {
-                                console.log(reply.link)
                                 res.status(302).redirect(reply.link)
                             } else {
                                 console.error(err);
