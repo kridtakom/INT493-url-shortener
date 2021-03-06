@@ -2,8 +2,8 @@
 FROM node:12-alpine as base
 
 WORKDIR /src
-COPY package.json /src/
-COPY . /src
+COPY ./URL-Shortener/package.json /src
+COPY ./URL-Shortener /src
 
 #==== Deploy Stage ====#
 FROM base as production
