@@ -12,7 +12,7 @@ router.get('/:url', (req, res, next) => {
     client.hgetall(hashUrl, (err, reply) => {
         if (!err) {
             if (reply) {
-                client.incr('visit', (err, visit) => {
+                client.incr(reply.link, (err, visit) => {
                     if (!err) {
                         client.hset(hashUrl, 'link', reply.link, 'visit', visit, (err) => {
                             if (!err) {
