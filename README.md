@@ -34,5 +34,5 @@ $ chmod +x *.sh
 
 ### 5. Run Docker
 ```
-$ ./docker-update&clear&run.sh
+$ ./docker-update\&clear\&run.sh
 ```
