@@ -9,19 +9,12 @@ const remoceSpace = (text) => {
 router.get('/:url', (req, res, next) => {
     let hashUrl = req.params.url;
     hashUrl = remoceSpace(hashUrl)
-    client.hgetall(hashUrl, (err, reply) => {
+    client.get(hashUrl, (err, link) => {
         if (!err) {
-            if (reply) {
-                client.incr(JSON.stringify(hashUrl), (err, visit) => {
+            if (link) {
+                client.incr(`${hashUrl}-visit`, (err) => {
                     if (!err) {
-                        client.hset(hashUrl, 'link', reply.link, 'visit', visit, (err) => {
-                            if (!err) {
-                                res.status(302).redirect(reply.link)
-                            } else {
-                                console.error(err);
-                                res.status(500).send(err)
-                            }
-                        });
+                        res.status(302).redirect(link)
                     } else {
                         console.error(err);
                         res.status(500).send(err)
@@ -42,15 +35,10 @@ router.get('/:url', (req, res, next) => {
 router.get('/:url/stats', (req, res, next) => {
     let hashUrl = req.params.url;
     hashUrl = remoceSpace(hashUrl)
-    client.hgetall(hashUrl, (err, reply) => {
+    client.get(`${hashUrl}-visit`, (err, visit) => {
         if (!err) {
-            if (reply) {
-                try {
-                    res.status(200).json({ "visit": reply.visit })
-                } catch (e) {
-                    res.status(500).send("JSON error from redis")
-                }
-
+            if (visit) {
+                res.status(200).json({ "visit": visit })
             } else {
                 console.log("==== Not Found redis ====")
                 res.status(400).send("Not Found URL")

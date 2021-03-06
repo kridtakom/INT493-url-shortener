@@ -20,7 +20,7 @@ router.post('/', (req, res, next) => {
         url = remoceSpace(url)
         if (verifyUrl(url)) {
             let hashUrl = shortHash(url)
-            client.hgetall(hashUrl, (err, reply) => {
+            client.get(hashUrl, (err, reply) => {
                 if (!err) {
                     if (reply) {
                         console.log("==== Form redis ===")
@@ -28,9 +28,10 @@ router.post('/', (req, res, next) => {
                         res.status(200).json(message)
                     } else {
                         console.log("==== Save redis ====")
-                        client.hset(hashUrl, 'link', url, 'visit', 0, (err) => {
+                        client.set(hashUrl, url, (err) => {
                             if (!err) {
                                 let message = { link: base_url + hashUrl }
+                                client.set(`${hashUrl}-visit`, 0)
                                 res.status(200).json(message)
                             } else {
                                 console.error(err);
