@@ -6,13 +6,13 @@ const remoceSpace = (text) => {
     return text.replace(/\s/g, '')
 }
 
-router.get('/:url', function (req, res, next) {
+router.get('/:url', (req, res, next) => {
     let hashUrl = req.params.url;
     hashUrl = remoceSpace(hashUrl)
     client.hgetall(hashUrl, (err, reply) => {
         if (!err) {
             if (reply) {
-                client.incr('visit', function (err, visit) {
+                client.incr('visit', (err, visit) => {
                     if (!err) {
                         client.hset(hashUrl, 'link', reply.link, 'visit', visit, (err) => {
                             if (!err) {
@@ -40,11 +40,10 @@ router.get('/:url', function (req, res, next) {
     });
 });
 
-router.get('/:url/stats', function (req, res, next) {
+router.get('/:url/stats', (req, res, next) => {
     let hashUrl = req.params.url;
     hashUrl = remoceSpace(hashUrl)
     client.hgetall(hashUrl, (err, reply) => {
-        console.log("== stats== Found Form redis = stats==")
         if (!err) {
             if (reply) {
                 try {
