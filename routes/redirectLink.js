@@ -11,12 +11,18 @@ router.get('/:url', function (req, res, next) {
     hashUrl = remoceSpace(hashUrl)
     client.hgetall(hashUrl, (err, reply) => {
         if (!err) {
-            if (reply.link && reply.visit) {
-                console.log("==== Found Form redis ===")
-                client.hmset(hashUrl, 'link', reply.link, 'visit', parseInt(reply.visit) + 1, (err) => {
+            if (reply) {
+                client.incr('visit', function (err, visit) {
                     if (!err) {
-                        console.log(reply.link)
-                        res.status(302).redirect(reply.link)
+                        client.hset(hashUrl, 'link', reply.link, 'visit', visit, (err) => {
+                            if (!err) {
+                                console.log(reply.link)
+                                res.status(302).redirect(reply.link)
+                            } else {
+                                console.error(err);
+                                res.status(500).send(err)
+                            }
+                        });
                     } else {
                         console.error(err);
                         res.status(500).send(err)
