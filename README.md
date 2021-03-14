@@ -1,6 +1,6 @@
 # INT493-url-shortener
 
-# Prerequisites
+## 🐳:=Prerequisites
 - Docker
 - Docker-compose
 
@@ -22,6 +22,8 @@ $ vi .env
 ### 3. Change REDIS password
 **** Don't forget change password to connect REDIS-SERVER
 ```sh
+$ mkdir /etc/redis 
+$ chmod 755 /etc/redis
 $ cd ../redis
 $ vi redis.conf
 ```
@@ -35,4 +37,13 @@ $ chmod +x *.sh
 ### 5. Run Docker
 ```
 $ ./docker-update\&clear\&run.sh
+```
+
+## 🤖:-Run Redis Slave mode
+**** Don't forget change slave_password, redis_master_ip and master_password
+```
+$ cd redis-slave/
+$ vi slave.conf
+$ docker build --pull --no-cache -t redis_slave_build .
+$ docker run -d -p 6379:6379 --name redis-slave --restart=always redis_slave_build
 ```
