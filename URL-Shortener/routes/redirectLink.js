@@ -38,7 +38,7 @@ router.get('/:url/stats', (req, res, next) => {
     client.get(`${hashUrl}-visit`, (err, visit) => {
         if (!err) {
             if (visit) {
-                res.status(200).json({ "visit": visit })
+                res.status(200).json({ "visit": parseInt(visit) })
             } else {
                 console.log("==== Not Found redis ====")
                 res.status(400).send("Not Found URL")
