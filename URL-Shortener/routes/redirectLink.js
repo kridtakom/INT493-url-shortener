@@ -9,12 +9,12 @@ const remoceSpace = (text) => {
 router.get('/:url', (req, res, next) => {
     let hashUrl = req.params.url;
     hashUrl = remoceSpace(hashUrl)
-    client.get(hashUrl, (err, link) => {
+    client.hgetall(hashUrl, (err, reply) => {
         if (!err) {
-            if (link) {
-                client.incr(`${hashUrl}-visit`, (err) => {
+            if (reply) {
+                client.hincrby(hashUrl, 'visit', 1, (err) => {
                     if (!err) {
-                        res.status(302).redirect(link)
+                        res.status(302).redirect(reply.link)
                     } else {
                         console.error(err);
                         res.status(500).send(err)
@@ -35,7 +35,7 @@ router.get('/:url', (req, res, next) => {
 router.get('/:url/stats', (req, res, next) => {
     let hashUrl = req.params.url;
     hashUrl = remoceSpace(hashUrl)
-    client.get(`${hashUrl}-visit`, (err, visit) => {
+    client.hget(hashUrl, 'visit', (err, visit) => {
         if (!err) {
             if (visit) {
                 res.status(200).json({ "visit": parseInt(visit) })
