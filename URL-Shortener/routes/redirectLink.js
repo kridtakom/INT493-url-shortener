@@ -9,12 +9,12 @@ const remoceSpace = (text) => {
 router.get('/:url', (req, res, next) => {
     let hashUrl = req.params.url;
     hashUrl = remoceSpace(hashUrl)
-    client.hgetall(hashUrl, (err, reply) => {
+    client.hget(hashUrl, 'link', (err, link) => {
         if (!err) {
-            if (reply) {
+            if (link) {
                 client.hincrby(hashUrl, 'visit', 1, (err) => {
                     if (!err) {
-                        res.status(302).redirect(reply.link)
+                        res.status(302).redirect(link)
                     } else {
                         console.error(err);
                         res.status(500).send(err)
