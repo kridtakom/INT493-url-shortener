@@ -1,4 +1,3 @@
-const { text } = require('express');
 const express = require('express');
 const router = express.Router();
 const shortHash = require('short-hash');
@@ -20,7 +19,7 @@ router.post('/', (req, res, next) => {
         url = remoceSpace(url)
         if (verifyUrl(url)) {
             let hashUrl = shortHash(url)
-            client.hgetall(hashUrl, (err, reply) => {
+            client.hget(hashUrl, 'link', (err, reply) => {
                 if (!err) {
                     if (reply) {
                         console.log("==== Form redis ===")
@@ -47,7 +46,6 @@ router.post('/', (req, res, next) => {
         } else {
             res.status(400).send("Must be URL")
         }
-
     } else {
         res.status(400).send("Invalid Format")
     }
