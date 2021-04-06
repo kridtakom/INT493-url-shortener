@@ -47,3 +47,8 @@ $ vi slave.conf
 $ docker build --pull --no-cache -t redis_slave_build .
 $ docker run -d -p 6379:6379 --name redis-slave --restart=always redis_slave_build
 ```
+
+## 👷‍♂️ Run pm2 
+```
+PORT=3000 pm2 start -i 0 ./bin/www
+```
